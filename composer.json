@@ -10,8 +10,8 @@
     "extra": {
         "shopware-plugin-class": "DeclarativeAdmin\\DeclarativeAdmin",
         "label": {
-            "de-DE": "Skeleton plugin",
-            "en-GB": "Skeleton plugin"
+            "de-DE": "Declarative Admin",
+            "en-GB": "Declarative Admin"
         }
     },
     "autoload": {

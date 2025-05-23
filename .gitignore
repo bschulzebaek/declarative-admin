@@ -1,0 +1,5 @@
+.idea/
+src/Resources/public/administration/
+src/Resources/public/static/
+src/Resources/app/administration/.tmp
+src/Resources/app/administration/node_modules

@@ -1,0 +1,62 @@
+id: 'declarative-customer'
+type: core
+name: 'customer'
+title: 'Customers'
+description: 'Manage customers here.'
+color: '#F88962'
+icon: 'regular-users'
+entity: 'customer'
+useEditMode: true
+
+navigation:
+    - id: 'declarative-customer'
+      path: 'declarative.customer.list'
+      label: 'Customer (D)'
+      parent: 'sw-customer'
+routes:
+    list:
+        name: list
+        columns:
+            - firstName
+            - lastName
+            - email
+            - active
+    detail:
+        name: detail
+        redirect:
+            name: 'declarative.customer.detail.base'
+        # could use include/exclude
+        associations: [
+            'addresses', 'group', 'salutation', 'salesChannel.domains', 'boundSalesChannel.domains', 'lastPaymentMethod', 'defaultBillingAddress.country',
+            'defaultBillingAddress.countryState', 'defaultBillingAddress.salutation', 'defaultShippingAddress.country', 'defaultShippingAddress.countryState',
+            'defaultShippingAddress.salutation', 'tags', 'requestedGroup'
+        ]
+        propsMapping:
+            entity: 'customer'
+        children:
+            base:
+                name: base
+                component: 'sw-customer-detail-base'
+                propsMapping:
+                    entity: 'customer'
+                    editMode: 'customerEditMode'
+                meta:
+                    parentPath: 'declarative.customer.list'
+            addresses:
+                name: addresses
+                component: 'sw-customer-detail-addresses'
+                propsMapping:
+                    entity: 'customer'
+                meta:
+                    parentPath: 'declarative.customer.list'
+            order:
+                name: order
+                component: 'sw-customer-detail-order'
+                propsMapping:
+                    entity: 'customer'
+                meta:
+                    parentPath: 'declarative.customer.list'
+    create:
+        name: create
+        component: 'sw-customer-create'
+
