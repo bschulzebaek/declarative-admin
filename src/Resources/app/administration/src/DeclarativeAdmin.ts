@@ -32,7 +32,6 @@ export default class DeclarativeAdmin {
         console.groupCollapsed('DeclarativeAdmin.register', manifest.name);
 
         this.parseRoutes(manifest);
-        this.parseNavigation(manifest);
 
         this.definitions.set(manifest.id, manifest);
         const cloned = structuredClone(manifest);
@@ -113,13 +112,6 @@ export default class DeclarativeAdmin {
         });
     }
 
-    private parseNavigation(manifest: CustomManifest) {
-        // config.navigation = [];
-        //
-        // module.navigation.forEach((item) => {
-        //     config.navigation!.push(this.toNavigationConfig(item));
-        // });
-    }
 
     public getDefinitionByRouteName = (name: string) => {
         const definitionName = name.split('.').slice(0, 2).join('-');

@@ -4,4 +4,3 @@ Shopware.Component.register('sw-declarative-detail', () => import('./sw-declarat
 
 Shopware.Component.register('sw-declarative-view', () => import('./sw-declarative-view.vue'));
 
-Shopware.Component.override('sw-form-field-renderer', () => import('./sw-form-field-renderer.js'));
