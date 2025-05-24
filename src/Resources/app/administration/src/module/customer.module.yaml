@@ -2,7 +2,7 @@ id: 'declarative-customer'
 type: core
 name: 'customer'
 title: 'Customers'
-description: 'Manage customers here.'
+description: ''
 color: '#F88962'
 icon: 'regular-users'
 entity: 'customer'

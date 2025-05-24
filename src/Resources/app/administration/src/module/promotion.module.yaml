@@ -2,7 +2,7 @@ id: 'declarative-promotion'
 type: core
 name: 'promotion-v3'
 title: 'Promotions'
-description: 'Manage promotions here.'
+description: ''
 color: '#FFD700'
 icon: 'regular-sparkles'
 entity: 'promotion'
