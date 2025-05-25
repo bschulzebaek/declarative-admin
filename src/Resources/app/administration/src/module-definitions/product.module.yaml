@@ -1,0 +1,94 @@
+# yaml-language-server: $schema=./definition.schema.json
+id: test-product
+title: Product
+type: core
+entity: product
+presentation:
+    color: '#57d9a3'
+    icon: regular-products
+navigation:
+    - id: test-product
+      path: test.product.list
+      label: Products (*)
+      position: 10
+      color: '#57d93a'
+      icon: regular-products
+      parent: sw-catalogue
+pages:
+    - name: list
+      associations: [manufacturer]
+      slots:
+            header: declarative-header-list
+            actions: declarative-actions-list
+            search: declarative-search-list
+            languageSwitch: declarative-language-switch
+            content:
+                component: declarative-content-list
+                columns:
+                    - property: name
+                      detailLink: true
+                      primary: true
+                    - productNumber
+                    - manufacturer.name
+                    - active
+                    - sales
+                    - stock
+                    - availableStock
+                    - createdAt
+                    - updatedAt
+
+
+    - name: detail
+      path: detail/:id
+      meta:
+          parentPath: test.product.list
+      associations: [deliveryTime, crossSellings]
+      slots:
+          header: declarative-header-detail
+          actions: declarative-actions-detail
+          languageSwitch: declarative-language-switch
+      tabs:
+          base:
+              cards:
+                  - component: declarative-card-entity-form
+                    title: sw-product.detailBase.cardTitleProductInfo
+                    fields: [name, manufacturerId, productNumber, description, markAsTopseller]
+                  - component: declarative-card-placeholder
+                    title: sw-product.detailBase.cardTitlePrices
+                    message:  'PLACEHOLDER: Refactor "sw-product-price-form" to work with the generic store.'
+                  - component: declarative-card-entity-form
+                    title: sw-product.detailBase.cardTitleDeliverabilityInfo
+                    fields: [stock, availableStock, isCloseout, deliveryTime, restockTime, shippingFree, minPurchase, purchaseSteps, maxPurchase]
+                  - component: declarative-card-placeholder
+                    title: sw-product.detailBase.cardTitleAssignment
+                    message:  'PLACEHOLDER: Refactor "sw-product-category-form" to work with the generic store.'
+                  - component: declarative-card-placeholder
+                    title: sw-product.detailBase.cardTitleMedia
+                    message:  'PLACEHOLDER: Need a generic form for media associations.'
+                  - component: declarative-card-entity-form
+                    title: sw-product.detailBase.cardTitleSettings
+                    fields: [releaseDate, ean, manufacturerNumber]
+          specifications:
+              cards:
+                  - component: declarative-card-entity-form
+                    title: sw-product.specifications.cardTitleMeasuresPackaging
+                    fields: [width, height, length, weight, purchaseUnit, unitId, packUnit, packUnitPlural, referenceUnit]
+                  - component: declarative-card-placeholder
+                    title: sw-product.properties.cardTitle
+                    message:  'PLACEHOLDER: Refactor "sw-product-properties" to work with the generic store.'
+                  - component: declarative-card-placeholder
+                    title: sw-product.specifications.cardTitleEssentialCharacteristics
+                    message:  'PLACEHOLDER: Need a generic form for media associations.'
+                  - component: declarative-card-custom-fieldset
+#          prices:
+#              component: "sw-product-detail-context-prices # Refactor to work with the generic store
+#          variants:
+#              component: sw-product-detail-variants # Refactor to work with the generic store
+#          layout:
+#              component: sw-product-detail-layout # Refactor to work with the generic store
+#          seo:
+#              component: sw-product-detail-seo # Refactor to work with the generic store
+          crossSelling:
+              component: sw-product-detail-cross-selling
+#          reviews:
+#              component: sw-product-detail-reviews # Refactor to work with the generic store

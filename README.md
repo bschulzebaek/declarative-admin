@@ -1,13 +1,14 @@
 # Declarative Admin
 
 This is a proof-of-concept implementation for declaratively creating admin modules in Shopware 6.
-The goal is to provide a simple interface using config files to define the module structure (routing, views) and behavior without writing any Vue/JS code, thus standardizing UI implementations and reducing complexity & instability by minimizing LOC.
-
-This project is used to identify edge cases, limitations and risks for such an approach.
-
+The goal is to provide a simple interface using config files to define the module structure (routing, views) and behavior without writing any Vue/JS code, thus standardizing UI implementations and reducing complexity & instability by minimizing LOC and different implementations of the same behaviors.
 
 ## Registering a Module
 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+### Module Schema
+
+TODO: `src/Resources/app/administration/module-definitions/definition.schema.json`
 
 ```yaml
 id: 'declarative-promotion'
@@ -60,28 +61,3 @@ sw.customer.detail.order
 |  Module identifier 
 Vendor prefix
 ```
-
-### Naming Rules
-
-| Part     | Description | Reserved Names       | 
-|----------|--------------------------|---------------------------|
-| `vendor` | Must be a unique to the developer/company.|                           |
-| `module` | Must be unique within the vendor namespace.|                           |
-| `page`   | Must be unique within the module.| `list` `detail` `create` |
-| `view`   | Must be unique within the page.|                           |
-
-Note: The reserved page names are used to register pre-defined pages in the module. Using these is possible, but they come with their own defaults and behavior; custom configuration may be overridden.
-
-### Module UI Deep Dive
-
-Explore common use cases that require configuration or represent edge cases.
-
-Could do: Write-up per page type and list differences by module
-
-## Risks
-* Too many edge cases in one place → stability, testability
-* Compatibility
- 
-## Limitations
-* Extensibility (Twig vs. Extension SDK)
-* Design will be more standardized across all modules

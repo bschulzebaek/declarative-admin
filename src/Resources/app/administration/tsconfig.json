@@ -22,7 +22,6 @@
     "strictNullChecks": true,
 
     "paths": {
-      "SwagPayPal/*": ["./src/*"],
       "src/*": [
         "./../../../../../../../src/Administration/Resources/app/administration/src/*"
       ],

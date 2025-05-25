@@ -1,10 +1,3 @@
-import './compatibility/promotion';
-import './compatibility/component-overrides';
-
+import './mixin/generic-module.mixin';
 import './component';
-import modules from './module';
-import DeclarativeAdmin from './DeclarativeAdmin';
-
-const declarativeAdmin = new DeclarativeAdmin();
-
-modules.forEach(declarativeAdmin.register);
+import './module-definitions';

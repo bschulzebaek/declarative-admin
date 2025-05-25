@@ -1,0 +1,58 @@
+# yaml-language-server: $schema=./definition.schema.json
+id: test-review
+title: Reviews
+description: ''
+type: core
+entity: product_review
+presentation:
+    color: '#57D9A3'
+    icon: regular-products
+navigation:
+    - id: test-review
+      path: test.review.list
+      label: Reviews (*)
+      parent: sw-catalogue
+      position: 20
+pages:
+    - name: list
+      associations: [product, customer]
+      slots:
+          header: declarative-header-list
+          search: declarative-search-list
+          content:
+              component: declarative-content-list
+              columns:
+                  - property: title
+                    detailLink: true
+                  - points
+                  - property: product.name
+                    dataIndex: product.name
+                    primary: true
+                  - property: user
+                    dataIndex: customer.lastName,customer.firstName
+                  - createdAt
+                  - property: status
+                    align: center
+                  - property: comment
+                    align: center
+    - name: detail
+      path: detail/:id
+      associations: [salesChannel, product, customer]
+      meta:
+          parentPath: test.review.list
+      slots:
+          header: declarative-header-detail
+          actions: declarative-actions-detail
+      tabs:
+          default:
+              cards:
+                  - component: test-review-card
+                  - component: declarative-card-entity-form
+                    title: sw-review.detail.cardTitleReviewProperties
+                    fields:
+                        - languageId
+                        - status
+                  - component: declarative-card-entity-form
+                    title: sw-review.detail.labelComment
+                    fields:
+                        - comment

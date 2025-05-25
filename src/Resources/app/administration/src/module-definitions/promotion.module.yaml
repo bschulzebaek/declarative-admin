@@ -1,0 +1,70 @@
+# yaml-language-server: $schema=./definition.schema.json
+id: test-promotion
+title: Promotions
+description: This module is used to manage promotions in the Shopware administration.
+type: core
+entity: promotion
+presentation:
+    color: '#FFD700'
+    icon: regular-sparkles
+navigation:
+    - id: test-promotion
+      path: test.promotion.list
+      label: Promotions (*)
+      parent: sw-marketing
+pages:
+    - name: detail
+      path: detail/:id
+      meta: &DetailMeta
+          parentPath: test.promotion.list
+      associations: [discounts.promotionDiscountPrices, discounts.discountRules, salesChannels]
+      slots: &DetailSlots
+          header: declarative-header-detail
+#          actions: declarative-actions-detail-editMode
+          actions: declarative-actions-detail
+          languageSwitch: declarative-language-switch
+      tabs:
+          base:
+              cards:
+                  - &BaseFormCard
+                    component: declarative-card-entity-form
+                    title: promotion.card.general.title
+                    fields:
+                        - name
+                        - priority
+                        - validFrom
+                        - validUntil
+                        - active
+                  - component: test-promotion-base-codes
+                  - component: declarative-card-custom-fieldset
+          conditions:
+              cards:
+                  - component: sw-promotion-v2-conditions
+                    props:
+                        promotion: store.currentItem
+          discounts:
+              cards:
+                  - component: sw-promotion-detail-discounts
+
+    - name: create
+      meta: *DetailMeta
+      slots: *DetailSlots
+      tabs:
+          default:
+              cards:
+                  - *BaseFormCard
+
+    - name: list
+      slots:
+          header: declarative-header-list
+          actions: declarative-actions-list
+          search: declarative-search-list
+          languageSwitch: declarative-language-switch
+          content:
+              component: declarative-content-list
+              columns:
+                  - property: name
+                    detailLink: true
+                  - active
+                  - validFrom
+                  - validUntil

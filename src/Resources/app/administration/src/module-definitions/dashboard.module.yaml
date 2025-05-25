@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=./definition.schema.json
+id: test-dashboard
+title: Dashboard
+type: core
+smartBar: false
+presentation:
+    color: '#6ad6f0'
+    icon: regular-tachometer
+navigation:
+    - id: test-dashboard
+      path: test.dashboard.index
+      label: Dashboard (*)
+      position: 10
+      color: '#6ad6f0'
+      icon: regular-tachometer
+pages:
+    - name: index
+      tabs:
+          default:
+              cards:
+                  - component: test-dashboard-welcome
+                  - component: sw-usage-data-consent-banner
+                    can-be-hidden: true
+                  - component: sw-extension-component-section
+                    position-identifier: sw-dashboard__before-content
+                  - component: test-dashboard-help
+                  - component: sw-dashboard-statistics
+                  - component: sw-extension-component-section
+                    position-identifier: sw-dashboard__after-content

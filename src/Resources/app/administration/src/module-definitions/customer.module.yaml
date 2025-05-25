@@ -1,0 +1,59 @@
+id: test-customer
+title: Customers
+description:
+type: core
+entity: customer
+presentation:
+    color: '#F88962'
+    icon: regular-users
+navigation:
+    - id: test-customer
+      path: test.customer.list
+      label: Customer (*)
+      parent: sw-customer
+pages:
+    - name: list
+      slots:
+          header: declarative-header-list
+          actions: declarative-actions-list
+          search: declarative-search-list
+          languageSwitch: declarative-language-switch
+          content:
+              component: declarative-content-list
+              columns:
+                  - firstName
+                  - lastName
+                  - email
+                  - active
+    - name: detail
+      path: detail/:id
+      meta: &DetailMeta
+          parentPath: test.customer.list
+      redirect:
+          name: declarative.customer.detail.base
+      associations: [
+          addresses, group, salutation, salesChannel.domains, boundSalesChannel.domains,
+          lastPaymentMethod, defaultBillingAddress.country, defaultBillingAddress.countryState,
+          defaultBillingAddress.salutation, defaultShippingAddress.country,
+          defaultShippingAddress.countryState, defaultShippingAddress.salutation, tags,
+          requestedGroup
+      ]
+      slots:
+          actions: declarative-actions-detail-editMode
+      tabs:
+          base:
+              component: sw-customer-detail-base
+              props:
+                  customer: store.currentItem
+                  customerEditMode: store.editMode
+          addresses:
+              component: sw-customer-detail-addresses
+              props:
+                  customer: store.currentItem
+          order:
+              component: sw-customer-detail-order
+              props:
+                    customer: store.currentItem
+    - name: create
+      component: sw-customer-create
+      meta: *DetailMeta

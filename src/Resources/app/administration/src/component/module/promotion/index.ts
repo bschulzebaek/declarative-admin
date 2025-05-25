@@ -1,4 +1,5 @@
-import DetailReadyEvent from '../component/DetailReadyEvent';
+// @ts-nocheck
+import DetailReadyEvent from '../../../component/DetailReadyEvent';
 
 /**
  * "sw-promotion-detail-discounts" relies on the VUEX swPromotionDetail store, which is hydrated in the sw-promotion-detail component.
@@ -15,5 +16,4 @@ window.addEventListener(DetailReadyEvent.NAME, (event) => {
     }
 
     Shopware.Store.get('swPromotionDetail').promotion = event.entity;
-    console.log(Shopware.Store.get('swPromotionDetail').promotion);
 })

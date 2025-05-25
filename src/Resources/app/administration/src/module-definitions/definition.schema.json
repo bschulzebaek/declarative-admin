@@ -1,0 +1,93 @@
+{
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "core",
+        "plugin"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "entity": {
+      "type": ["string", "null"]
+    },
+    "presentation": {
+      "type": ["object", "null"],
+      "properties": {
+        "color": {
+          "type": ["string", "null"],
+          "format": "color"
+        },
+        "icon": {
+          "type": ["string", "null"]
+        },
+        "favicon": {
+          "type": ["string", "null"]
+        }
+      },
+      "required": []
+    },
+    "navigation": {
+      "type": ["array", "null"],
+      "items": {
+        "type": ["object", "null"],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "parent": {
+            "type": ["string", "null"]
+          },
+          "icon": {
+            "type": ["string", "null"]
+          },
+          "position": {
+            "type": ["integer", "null"],
+            "minimum": 0
+          }
+        },
+        "required": ["id", "path", "label"]
+      }
+    },
+    "pages": {
+      "type": ["array"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "config": {
+            "type": [
+              "null",
+              "object"
+            ]
+          },
+          "component": {
+            "type": ["string"],
+            "enum": [
+              "sw-page-list",
+              "sw-page-detail",
+              "sw-page-create"
+            ]
+          }
+        }
+      },
+      "required": ["name", "component"]
+    }
+  }
+}
