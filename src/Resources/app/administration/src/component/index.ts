@@ -1,24 +1,30 @@
 import './store/generic.store';
 
+/**
+ * Page Slots
+ */
 Shopware.Component.register('sw-declarative-wrapper', () => import('./page/sw-declarative-wrapper.vue'));
 Shopware.Component.register('sw-page-declarative', () => import('./page/sw-page-declarative.vue'));
+Shopware.Component.register('declarative-header-list', () => import('./page-slots/declarative-header-list.vue'));
+Shopware.Component.register('declarative-header-detail', () => import('./page-slots/declarative-header-detail.vue'));
+Shopware.Component.register('declarative-content-list', () => import('./page-slots/declarative-content-list.vue'));
+Shopware.Component.register('declarative-actions-list', () => import('./page-slots/declarative-actions-list.vue'));
+Shopware.Component.register('declarative-actions-detail', () => import('./page-slots/declarative-actions-detail.vue'));
+Shopware.Component.register('declarative-actions-detail-editMode', () => import('./page-slots/declarative-actions-detail-editMode.vue'));
+Shopware.Component.register('declarative-language-switch', () => import('./page-slots/declarative-language-switch.vue'));
+Shopware.Component.register('declarative-search-list', () => import('./page-slots/declarative-search-list.vue'));
 
-Shopware.Component.register('declarative-header-list', () => import('./page-parts/header/declarative-header-list.vue'));
-Shopware.Component.register('declarative-header-detail', () => import('./page-parts/header/declarative-header-detail.vue'));
+/**
+ * Page Content Cards
+ */
+Shopware.Component.register('declarative-card-placeholder', () => import('./cards/declarative-card-placeholder.vue'));
+Shopware.Component.register('declarative-card-entity-form', () => import('./cards/declarative-card-entity-form.vue'));
+Shopware.Component.register('declarative-card-custom-fieldset', () => import('./cards/declarative-card-custom-fieldset.vue'));
 
-Shopware.Component.register('declarative-content-list', () => import('./page-parts/content/declarative-content-list.vue'));
+/**
+ * Module Components
+ */
 
-Shopware.Component.register('declarative-actions-list', () => import('./page-parts/actions/declarative-actions-list.vue'));
-Shopware.Component.register('declarative-actions-detail', () => import('./page-parts/actions/declarative-actions-detail.vue'));
-Shopware.Component.register('declarative-actions-detail-editMode', () => import('./page-parts/actions/declarative-actions-detail-editMode.vue'));
-
-Shopware.Component.register('declarative-language-switch', () => import('./page-parts/language-switch/declarative-language-switch.vue'));
-
-Shopware.Component.register('declarative-search-list', () => import('./page-parts/search/declarative-search-list.vue'));
-
-Shopware.Component.register('declarative-card-placeholder', () => import('./page-parts/cards/declarative-card-placeholder.vue'));
-Shopware.Component.register('declarative-card-entity-form', () => import('./page-parts/cards/declarative-card-entity-form.vue'));
-Shopware.Component.register('declarative-card-custom-fieldset', () => import('./page-parts/cards/declarative-card-custom-fieldset.vue'));
 
 // Promotion Module
 import './module/promotion';

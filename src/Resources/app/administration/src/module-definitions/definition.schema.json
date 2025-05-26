@@ -3,6 +3,12 @@
     "id": {
       "type": "string"
     },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": ["string"]
+    },
     "type": {
       "type": "string",
       "enum": [
@@ -10,32 +16,32 @@
         "plugin"
       ]
     },
-    "title": {
-      "type": "string"
-    },
     "entity": {
-      "type": ["string", "null"]
+      "type": ["string"]
     },
+
     "presentation": {
-      "type": ["object", "null"],
+      "type": ["object"],
       "properties": {
         "color": {
-          "type": ["string", "null"],
+          "type": ["string"],
           "format": "color"
         },
         "icon": {
-          "type": ["string", "null"]
+          "type": ["string"]
         },
         "favicon": {
-          "type": ["string", "null"]
+          "type": ["string"]
+        },
+        "smartBar": {
+          "type": ["boolean"]
         }
-      },
-      "required": []
+      }
     },
     "navigation": {
-      "type": ["array", "null"],
+      "type": ["array"],
       "items": {
-        "type": ["object", "null"],
+        "type": "object",
         "properties": {
           "id": {
             "type": "string"
@@ -47,13 +53,17 @@
             "type": "string"
           },
           "parent": {
-            "type": ["string", "null"]
+            "type": ["string"]
           },
           "icon": {
-            "type": ["string", "null"]
+            "type": ["string"]
+          },
+          "color": {
+            "type": ["string"],
+            "format": "color"
           },
           "position": {
-            "type": ["integer", "null"],
+            "type": ["integer"],
             "minimum": 0
           }
         },
@@ -61,7 +71,7 @@
       }
     },
     "pages": {
-      "type": ["array"],
+      "type": "array",
       "items": {
         "type": "object",
         "properties": {
@@ -69,25 +79,134 @@
             "type": "string"
           },
           "path": {
-            "type": "string"
+            "type": ["string"]
           },
-          "config": {
-            "type": [
-              "null",
-              "object"
-            ]
+          "associations": {
+            "type": ["array"],
+            "items": {
+              "type": "string"
+            }
           },
-          "component": {
-            "type": ["string"],
-            "enum": [
-              "sw-page-list",
-              "sw-page-detail",
-              "sw-page-create"
-            ]
+          "meta": {
+            "type": ["object"],
+            "properties": {
+              "parentPath": {
+                "type": "string"
+              }
+            }
+          },
+          "slots": {
+            "type": ["object"],
+            "properties": {
+              "header": {
+                "type": ["string"],
+                "enum": [
+                  "declarative-header-detail",
+                  "declarative-header-list"
+                ]
+              },
+              "actions": {
+                "type": ["string"],
+                "enum": [
+                  "declarative-actions-detail",
+                  "declarative-actions-detail-editMode",
+                  "declarative-actions-list"
+                ]
+              },
+              "search": {
+                "type": ["string"],
+                "enum": [
+                  "declarative-search-list"
+                ]
+              },
+              "languageSwitch": {
+                "type": ["string"],
+                "enum": [
+                  "declarative-language-switch"
+                ]
+              },
+              "content": {
+                "type": ["object"],
+                "properties": {
+                  "component": {
+                    "type": "string",
+                    "enum": [
+                      "declarative-content-list"
+                    ]
+                  },
+                  "columns": {
+                    "type": "array",
+                    "items": {
+                      "oneOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "object"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "additionalProperties": true
+          },
+          "tabs": {
+            "type": ["object"],
+            "patternProperties": {
+              "^.*$": {
+                "type": "object",
+                "properties": {
+                  "component": {
+                    "type": ["string"]
+                  },
+                  "cards": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "component": {
+                          "type": "string",
+                          "enum": [
+                            "declarative-card-placeholder",
+                            "declarative-card-custom-fieldset",
+                            "declarative-card-entity-form"
+                          ]
+                        },
+                        "title": {
+                          "type": ["string"]
+                        },
+                        "fields": {
+                          "type": ["array"],
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "props": {
+                          "type": ["object"]
+                        },
+                        "position-identifier": {
+                          "type": ["string"]
+                        },
+                        "can-be-hidden": {
+                          "type": ["boolean"]
+                        },
+                        "message": {
+                          "type": ["string"]
+                        }
+                      },
+                      "required": ["component"]
+                    }
+                  }
+                }
+              }
+            }
           }
-        }
-      },
-      "required": ["name", "component"]
+        },
+        "required": ["name"]
+      }
     }
-  }
+  },
+  "required": ["id", "title"]
 }

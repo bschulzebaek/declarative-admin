@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=./definition.schema.json
 id: test-customer
 title: Customers
 description:
@@ -13,6 +14,9 @@ navigation:
       parent: sw-customer
 pages:
     - name: list
+      associations: [
+          defaultBillingAddress
+      ]
       slots:
           header: declarative-header-list
           actions: declarative-actions-list
@@ -21,10 +25,20 @@ pages:
           content:
               component: declarative-content-list
               columns:
-                  - firstName
-                  - lastName
+                  - property: firstName
+                    dataIndex: lastName,firstName
+                    inlineEdit: string
+                    detailLink: true
+                  - property: company
+                    visible: false
+                  - defaultBillingAddress.street
+                  - defaultBillingAddress.zipcode
+                  - defaultBillingAddress.city
+                  - property: customerNumber
+                    inlineEdit: string
+                  - group
                   - email
-                  - active
+
     - name: detail
       path: detail/:id
       meta: &DetailMeta
@@ -53,7 +67,8 @@ pages:
           order:
               component: sw-customer-detail-order
               props:
-                    customer: store.currentItem
+                  customer: store.currentItem
+
     - name: create
       component: sw-customer-create
       meta: *DetailMeta

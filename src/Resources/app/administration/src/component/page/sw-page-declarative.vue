@@ -18,6 +18,9 @@ export default Shopware.Component.wrapComponentConfig({
         };
     },
     computed: {
+        store() {
+            return Shopware.Store.get('generic-store');
+        },
         slots() {
             return this.pageDefinition.slots || {};
         },
@@ -99,7 +102,7 @@ export default Shopware.Component.wrapComponentConfig({
 <template>
     <sw-page
         :header-border-color="moduleDefinition.color"
-        :show-smart-bar="moduleDefinition.smartBar !== false"
+        :show-smart-bar="moduleDefinition.presentation?.smartBar !== false"
     >
         <template v-if="slotHeader" #smart-bar-header>
             <component :is="slotHeader.component" v-bind="slotHeader"/>
@@ -133,7 +136,9 @@ export default Shopware.Component.wrapComponentConfig({
 
                 <template v-if="activeTab">
                     <template v-if="activeTab.component">
+                        <sw-skeleton v-if="store.isLoading && !store.currentItem"/>
                         <component
+                            v-else
                             :is="activeTab.component"
                             :is-loading="isLoading"
                             v-bind="getCardAttrs(activeTab)"

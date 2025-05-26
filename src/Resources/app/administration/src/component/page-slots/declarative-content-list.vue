@@ -23,16 +23,17 @@ export default Shopware.Component.wrapComponentConfig({
             this.columns.forEach((column: string) => {
                 const propertyName = column.property || column;
 
-                hydrated.push({
+                let config = {
+                    ...(typeof column === 'object' ? column : {}),
                     property: propertyName,
-                    label: column.label || propertyName,
-                    // label: `entity.${this.moduleDefinition.entity}.${column}.label`,
-                    inlineEdit: this.entityDefinition.properties[propertyName]?.type || false,
-                    dataIndex: column.dataIndex || null,
                     routerLink: column.detailLink ? this.detailRoute : false,
-                    primary: column.primary || false,
-                    align: column.align,
-                });
+                };
+
+                if (!column.label) {
+                    config.label = propertyName;
+                }
+
+                hydrated.push(config);
             });
 
             return hydrated;
