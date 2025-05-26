@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "yaml": "^2.8.0",
+    "yaml": "^2.8.0"
   },
   "devDependencies": {
     "@types/node": "^20.11.0",

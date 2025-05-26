@@ -80,15 +80,5 @@ pages:
                     title: sw-product.specifications.cardTitleEssentialCharacteristics
                     message:  'PLACEHOLDER: Need a generic form for media associations.'
                   - component: declarative-card-custom-fieldset
-#          prices:
-#              component: "sw-product-detail-context-prices # Refactor to work with the generic store
-#          variants:
-#              component: sw-product-detail-variants # Refactor to work with the generic store
-#          layout:
-#              component: sw-product-detail-layout # Refactor to work with the generic store
-#          seo:
-#              component: sw-product-detail-seo # Refactor to work with the generic store
           crossSelling:
               component: sw-product-detail-cross-selling
-#          reviews:
-#              component: sw-product-detail-reviews # Refactor to work with the generic store

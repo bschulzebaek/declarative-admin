@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=./definition.schema.json
 id: test-customer
 title: Customers
-description:
+description: ''
 type: core
 entity: customer
 presentation:

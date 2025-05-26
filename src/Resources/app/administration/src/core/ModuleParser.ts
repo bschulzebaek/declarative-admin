@@ -42,16 +42,14 @@ export default class ModuleParser {
         return {
             name: cloned.id,
             title: cloned.title,
-
             description: cloned.description,
-
             type: cloned.type,
             color: cloned.presentation?.color,
             favicon: cloned.presentation?.favicon,
             icon: cloned.presentation?.icon,
             entity: cloned.entity,
             routes: this.transformPages(cloned.pages),
-            navigation: cloned.navigation ?? [],
+            navigation: cloned.navigation ?? undefined,
         };
     }
 

@@ -52,6 +52,8 @@ export default Shopware.Component.wrapComponentConfig({
     mounted() {
         this.setActiveTab(this.tabs?.[0]?.name);
         this.getData();
+
+        console.log(this)
     },
     methods: {
         getData() {
@@ -80,7 +82,7 @@ export default Shopware.Component.wrapComponentConfig({
             this.activeTabName = viewName;
         },
 
-        getCardAttrs(card) {
+        getAttrs(card) {
             let attrs = structuredClone(card);
 
             delete attrs.props;
@@ -141,7 +143,7 @@ export default Shopware.Component.wrapComponentConfig({
                             v-else
                             :is="activeTab.component"
                             :is-loading="isLoading"
-                            v-bind="getCardAttrs(activeTab)"
+                            v-bind="getAttrs(activeTab)"
                         />
                     </template>
                     <template v-if="activeTab.cards">
@@ -150,7 +152,7 @@ export default Shopware.Component.wrapComponentConfig({
                             v-else
                             v-for="card in activeTab.cards"
                             :is="card.component"
-                            v-bind="getCardAttrs(card)"
+                            v-bind="getAttrs(card)"
                         />
                     </template>
                 </template>

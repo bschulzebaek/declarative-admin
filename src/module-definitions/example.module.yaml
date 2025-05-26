@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=./definition.schema.json
+id: test-example
+title: Example Module
+navigation:
+    - id: test-example
+      label: Example
+      path: test.example.index
+      icon: regular-lightbulb
+pages:
+    - name: index
+      slots:
+          content:
+              component: declarative-card-placeholder
+              title: Hello, World!
