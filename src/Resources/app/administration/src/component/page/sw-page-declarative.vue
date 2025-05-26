@@ -52,8 +52,6 @@ export default Shopware.Component.wrapComponentConfig({
     mounted() {
         this.setActiveTab(this.tabs?.[0]?.name);
         this.getData();
-
-        console.log(this)
     },
     methods: {
         getData() {

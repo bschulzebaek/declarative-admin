@@ -5,7 +5,7 @@ The goal is to provide a simple interface using config files to define the modul
 
 ## Registering a Module
 To register a new admin module, you need to create a YAML file in the `./module-definitions` directory.<br> 
-Files following the `<name>.module.yaml` naming pattern are autoloaded.
+Files following the `<name>.module.yaml` naming pattern are autoloaded (still requires a `composer build:js:admin` or restarting the watcher).
 
 The configuration defines essential properties such as:
 - Module description and representation
@@ -120,7 +120,7 @@ Vendor prefix
 ## Pages
 
 ### Mixin, Store
-All pages are based on a single generic page component built around a mixin and store that provide common behaviors for entity pages.<br>
+All pages are based on a single [generic page component](src/Resources/app/administration/src/component/page/sw-page-declarative.vue) built around a mixin and store that provide common behaviors for entity pages.<br>
 The same mixin and store are available for all nested components and can be used to implement UI behaviors. Typical examples are:
 
 - reloading content when the content language changes
@@ -167,7 +167,8 @@ Basically any component can be re-used here, as long as certain requirements are
 - All required props are available in the generic page (including the mixin and store)
 - The component itself handles all required external data
 
-Props can be passed to any content or tab component using the `props` key, which essentially is mapping properties of the generic page mixin to the target prop names.<br>
+Props can be passed to any content or tab component using the `props` key, which essentially is mapping properties of the generic page to the target prop names.
+
 This includes all properties of the generic mixin and store.
 
 

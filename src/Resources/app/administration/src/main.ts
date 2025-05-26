@@ -10,7 +10,7 @@ Shopware.ModuleConfig = new ModuleConfigRegistry();
 
 const moduleParser = new ModuleParser();
 
-const moduleFiles: Record<string, string> = import.meta.glob('../../../../module-definitions/*.module.yaml', {
+const moduleFiles: Record<string, string> = import.meta.glob('../../../../../module-definitions/*.module.yaml', {
     as: 'raw',
     eager: true
 });
