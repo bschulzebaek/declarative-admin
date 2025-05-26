@@ -29,11 +29,13 @@ type RouteComponentConfig = {
 
 type ModulePage = RouteComponentConfig & {
     views?: RouteComponentConfig[];
+    associations?: string[];
 };
 
 type ModuleDefinition = {
     id: string;
     title: string;
+    description?: string;
     type: ModuleTypes;
     entity?: keyof EntitySchema.Entities;
     presentation?: ModulePresentation;

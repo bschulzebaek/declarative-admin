@@ -30,7 +30,6 @@ export default class ModuleParser {
     static PAGE_COMPONENT = 'sw-declarative-wrapper';
 
     public register = (definition: ModuleDefinition) => {
-        // @ts-ignore
         Shopware.ModuleConfig.add(definition);
         const manifest = this.buildModuleManifest(definition);
 

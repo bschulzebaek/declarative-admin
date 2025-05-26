@@ -81,11 +81,19 @@ export default Shopware.Mixin.register('generic-module', defineComponent({
             }
         },
         createEntity() {
+            if (!this.moduleDefinition.entity) {
+                return;
+            }
+
             this.store.currentItem = this.entityRepository.create(Shopware.Context.api);
             window.dispatchEvent(new DetailReadyEvent(this.moduleDefinition.entity, this.store.currentItem));
             this.store.isLoading = false;
         },
         async loadEntity() {
+            if (!this.moduleDefinition.entity) {
+                return;
+            }
+
             if (detailPromise) {
                 return detailPromise;
             }
